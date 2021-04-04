@@ -1,0 +1,1 @@
+ia-patcher.py -fs "patchfiles/index.html" "/distBuild/static/game/index.html" -fs "patchfiles/patch.css" "/distBuild/static/game/patch.css" -fs "patchfiles/patch.js" "/distBuild/static/game/patch.js"

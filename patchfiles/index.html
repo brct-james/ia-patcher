@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <meta
+      id="viewport"
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <link rel="shortcut icon" type="image/png" href="./favicon.png" />
+
+    <title>Play Legends of Idleon | The Free Idle MMO</title>
+    <meta
+      name="description"
+      content="Begin your adventure in Legends of Idleon! Form your own guild of unique characters, and work together to uncover secrets and defeat epic bosses!"
+    />
+    <meta name="image" content="https://www.LegendsOfIdleon.com/share.png" />
+    <!-- <meta property="og:url" content="https://www.LegendsOfIdleon.com" /> -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Play Legends of Idleon | The Free Idle MMO"
+    />
+    <meta
+      property="og:description"
+      content="Begin your adventure in Legends of Idleon! Form your own guild of unique characters, and work together to uncover secrets and defeat epic bosses!"
+    />
+    <meta
+      property="og:image"
+      content="https://www.LegendsOfIdleon.com/share.png"
+    />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1024" />
+    <meta property="og:image:height" content="500" />
+    <meta property="og:image:alt" content="Play Legends of Idleon" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Play Legends of Idleon | The Free Idle MMO"
+    />
+    <meta
+      name="twitter:description"
+      content="Begin your adventure in Legends of Idleon! Form your own guild of unique characters, and work together to uncover secrets and defeat epic bosses!"
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.LegendsOfIdleon.com/share.png"
+    />
+
+    <link rel="icon" type="image/png" href="/favicon64.png" />
+    <link rel="apple-touch-icon" href="/logo192_a.png" />
+
+    <script
+      type="text/javascript"
+      src="./Z.js"
+    ></script>
+    <!-- <script src="https://js.stripe.com/v3/"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.css"
+    />
+
+    <script>
+      window.addEventListener(
+        "touchmove",
+        function (event) {
+          event.preventDefault();
+        },
+        { capture: false, passive: false }
+      );
+      if (
+        typeof window.devicePixelRatio != "undefined" &&
+        window.devicePixelRatio > 2
+      ) {
+        var meta = document.getElementById("viewport");
+        meta.setAttribute(
+          "content",
+          "width=device-width, initial-scale=" +
+            2 / window.devicePixelRatio +
+            ", user-scalable=no"
+        );
+      }
+    </script>
+
+    <script>
+      //window.requestAnimationFrame = undefined;
+      window.specialSignIn = true;
+      window.uiShown = () => {
+        let x = document.getElementById("auth-container-container");
+        if (x) {
+          x.style.opacity = 1;
+          x.style.pointerEvents = "all";
+        }
+      };
+      window.uiDone = () => {
+        let x = document.getElementById("auth-container-container");
+        if (x) {
+          x.style.opacity = 0;
+          x.style.pointerEvents = "none";
+        }
+
+        window.closeManualSignIn();
+        window.closeGSignIn();
+      };
+
+	  window.ise = () => {
+		    let x = document.getElementById("manual-sign-in");
+        if (x) {
+          x.style.opacity = 1;
+          x.style.pointerEvents = "all";
+        }
+	  };
+    window.closeManualSignIn = () => {
+      let signInOptionUi = document.getElementById("manual-sign-in");
+      if (signInOptionUi) {
+        signInOptionUi.style.opacity = 0;
+        signInOptionUi.style.pointerEvents = "none";
+      }
+    }
+
+	  window.altLogin = (type) => {
+		    let signInOptionUi = document.getElementById("manual-sign-in");
+        if (signInOptionUi) {
+          signInOptionUi.style.opacity = 0;
+          signInOptionUi.style.pointerEvents = "none";
+        }
+        if (type == 0) {
+          let gLoginUi = document.getElementById("google-alt-sign-in");
+          if (gLoginUi) {
+            gLoginUi.style.opacity = 1;
+            gLoginUi.style.pointerEvents = "all";
+          }
+          window.startGLogin()
+        } else if (type == 1) {
+          window.emailSignIn()
+        }
+	  }
+    window.closeGSignIn = () => {
+			let gLoginUi = document.getElementById("google-alt-sign-in");
+			if (gLoginUi) {
+				gLoginUi.style.opacity = 0;
+				gLoginUi.style.pointerEvents = "none";
+			}
+    }
+    </script>
+    <link type="text/css" rel="stylesheet" href="./game.css" />
+  </head>
+  <body>
+    <noscript
+      >This webpage makes extensive use of JavaScript. Please enable JavaScript
+      in your web browser to view this page.</noscript
+    >
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-analytics.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-functions.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-database.js"></script>
+
+    <script src="./extra/extra.js"></script>
+    <script src="./extra/steam.js"></script>
+
+    <script type="text/javascript" src="./lib/firebase.js"></script>
+    <script type="text/javascript" src="./lib/FirebaseMMO.js"></script>
+
+    <div id="content-container">
+      <div id="content-container-inner"><div id="openfl-content"></div></div>
+    </div>
+
+    <script type="text/javascript">
+      lime.embed("Z", "openfl-content", 960, 540, { parameters: {} });
+    </script>
+
+    <!-- <script>
+      var websocket = Stripe(
+        "pk_live_51HnWdiIpJHVNIIzvvR6lEEJkKp6qku22UMH8sw8bkjzHsqEq8YDKzpaK5sKFvRC60SjPnVqRnVz8DkQ90Dn2CQRB00p4ULRRrP"
+      );
+    </script> -->
+
+    <div id="manual-sign-in" onclick="
+    var event = arguments[0] || event || window.event;
+    if( event.target === this ) {
+      window.closeManualSignIn();
+    }">
+      <ul class="firebaseui-idp-list">
+        <li class="firebaseui-list-item">
+          <button
+            class="firebaseui-idp-button mdl-button mdl-js-button mdl-button--raised firebaseui-idp-google firebaseui-id-idp-button"
+            data-provider-id="google.com"
+            style="background-color: #ffffff"
+            data-upgraded=",MaterialButton"
+			      onclick="window.altLogin(0)"
+          >
+            <span class="firebaseui-idp-icon-wrapper"
+              ><img
+                class="firebaseui-idp-icon"
+                alt=""
+                src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" /></span
+            ><span class="firebaseui-idp-text firebaseui-idp-text-long"
+              >Sign in with Google</span
+            ><span class="firebaseui-idp-text firebaseui-idp-text-short"
+              >Google</span
+            >
+          </button>
+        </li>
+        <li class="firebaseui-list-item">
+          <button
+            class="firebaseui-idp-button mdl-button mdl-js-button mdl-button--raised firebaseui-idp-password firebaseui-id-idp-button"
+            data-provider-id="password"
+            style="background-color: #db4437"
+            data-upgraded=",MaterialButton"
+			      onclick="window.altLogin(1)"
+          >
+            <span class="firebaseui-idp-icon-wrapper"
+              ><img
+                class="firebaseui-idp-icon"
+                alt=""
+                src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/mail.svg" /></span
+            ><span class="firebaseui-idp-text firebaseui-idp-text-long"
+              >Sign in with email</span
+            ><span class="firebaseui-idp-text firebaseui-idp-text-short"
+              >Email</span
+            >
+          </button>
+        </li>
+      </ul>
+    </div>
+	<div id="google-alt-sign-in" onclick="
+    var event = arguments[0] || event || window.event;
+    if( event.target === this ) {
+      window.closeGSignIn();
+    }">
+		<div>
+			<div>To sign in with Google, go to the following url<br/>and enter the code below to verify it is you.</div>
+			<br/>
+			<a href="#" target="_blank" rel="noopener noreferrer" id="google-alt-sign-in-verification-url">Loading...</a>
+			<h2 id="google-alt-sign-in-user_code">XXXX-XXXX</h2>
+      <button id="google-alt-sign-in-button" class="deactivated" onclick="window.openGLogin();">Copy Code and Open URL</button>
+			<br/>
+			<div id="google-alt-sign-in-refresh" onclick="window.forceCheckGLogin();">After sign in, click here if this page<br/>does not automatically refresh</div>
+		</div>
+	</div>
+    <div id="auth-container-container" onclick="
+    var event = arguments[0] || event || window.event;
+    if( event.target === this ) {
+      window.uiDone();
+    }">
+      <div id="auth-container"></div>
+    </div>
+  </body>
+</html>

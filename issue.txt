@@ -1,0 +1,4 @@
+packing app.asar makes the size go from 79690kb to 92353kb even if the new file is literally 0 bytes different...
+whatever is causing that is probably also causing the issue where the game wont launch once packed (also tested even with 0 byte different files)
+
+tl;dr look into how it is being repacked - maybe output to a different folder and run a diff on them
