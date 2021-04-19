@@ -39,7 +39,8 @@ def run():
                 print('error while coping', newfile, 'to replace', i[1], "in temp archive", archivepath)
                 input("Press enter to acknowledge")
         print('finished patching, packing new asar')
-        pack_asar(archivepath, steamasarpath)
+        pack_asar(archivepath, "C:/Users/green/Documents/GitHub/ia-patcher/newapp.asar")
+        #steamasarpath
         input('finished patch, press any key to close')
 
 # handle UAC elevation

@@ -23,6 +23,7 @@ class Asar:
     def open(cls, path):
         fp = open(path, 'rb')
         data_size, header_size, header_object_size, header_string_size = struct.unpack('<4I', fp.read(16))
+        print(data_size, header_size, header_object_size, header_string_size)
         header_json = fp.read(header_string_size).decode('utf-8')
         return cls(
             path=path,
@@ -73,6 +74,7 @@ class Asar:
         diff = aligned_size - header_string_size
         header_json = header_json + b'\0' * diff if diff else header_json
         fp = io.BytesIO()
+        print(data_size, header_size, header_object_size, header_string_size)
         fp.write(struct.pack('<4I', data_size, header_size, header_object_size, header_string_size))
         fp.write(header_json)
         fp.write(_paths_to_bytes(paths))
